@@ -1,0 +1,62 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-latest
+            target: x86_64-apple-darwin
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+          components: clippy, rustfmt
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          key: ${{ matrix.target }}
+
+      - run: npm ci
+
+      # The gate from CLAUDE.md, run on the host target only: cross-target test
+      # binaries (x86_64 on an arm64 runner) are not guaranteed to execute.
+      - name: Gate
+        if: matrix.target != 'x86_64-apple-darwin'
+        shell: bash
+        run: |
+          cargo fmt    --manifest-path src-tauri/Cargo.toml --check
+          cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+          cargo test   --manifest-path src-tauri/Cargo.toml
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: Claude Usage Widget ${{ github.ref_name }}
+          releaseBody: See the README for what the app shows and where its data comes from.
+          releaseDraft: true
+          prerelease: false
+          args: --target ${{ matrix.target }}
