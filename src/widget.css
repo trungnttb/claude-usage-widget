@@ -1,0 +1,189 @@
+:root {
+  --bg-alpha: 0.9;
+  --bg: rgb(22 22 26 / calc(var(--bg-alpha) * 100%));
+  --fg: #e8e8ea;
+  --muted: #8b8b93;
+  --track: #3a3a42;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --accent: #d97757;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font:
+    13px/1.45 system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  color: var(--fg);
+  background: transparent;
+  user-select: none;
+  overflow: hidden;
+  cursor: default;
+}
+
+#widget {
+  background: var(--bg);
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card + .card {
+  padding-top: 10px;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.label {
+  color: var(--muted);
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.bar {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.forecast {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* One scale for every element that carries a usage level. */
+[data-level="ok"] {
+  color: var(--ok);
+}
+
+[data-level="warn"] {
+  color: var(--warn);
+}
+
+[data-level="danger"] {
+  color: var(--danger);
+}
+
+.bar-fill[data-level="ok"] {
+  background: var(--ok);
+}
+
+.bar-fill[data-level="warn"] {
+  background: var(--warn);
+}
+
+.bar-fill[data-level="danger"] {
+  background: var(--danger);
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 34px;
+  margin-top: 6px;
+}
+
+.chart-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: rgb(255 255 255 / 4%);
+  border-radius: 2px;
+}
+
+.chart-bar {
+  width: 100%;
+  min-height: 1px;
+  border-radius: 2px;
+  background: var(--track);
+}
+
+.chart-bar[data-today='true'] {
+  background: var(--accent);
+}
+
+.small {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.note {
+  text-align: right;
+  font-size: 11px;
+  margin-top: -4px;
+}
+
+.retry {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--fg);
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.retry:hover:not(:disabled) {
+  background: rgb(255 255 255 / 14%);
+}
+
+.retry:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+.detail {
+  font-size: 11px;
+  opacity: 0.75;
+  word-break: break-word;
+}

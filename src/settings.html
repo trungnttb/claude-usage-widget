@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Usage</title>
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <form id="form">
+      <fieldset>
+        <legend data-i18n="groupDisplay"></legend>
+
+        <label class="field">
+          <span data-i18n="language"></span>
+          <select name="language">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="trayMetric"></span>
+          <select name="trayMetric">
+            <option value="sessionPercent" data-i18n="trayMetricSession"></option>
+            <option value="weekPercent" data-i18n="trayMetricWeek"></option>
+            <option value="sessionAndWeek" data-i18n="trayMetricBoth"></option>
+            <option value="todayCost" data-i18n="trayMetricCost"></option>
+            <option value="todayTokens" data-i18n="trayMetricTokens"></option>
+          </select>
+        </label>
+
+        <div class="group" id="cards"></div>
+
+        <label class="field">
+          <span data-i18n="currency"></span>
+          <select name="currencyCode">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+          </select>
+        </label>
+
+        <label class="field" id="rate-field">
+          <span data-i18n="exchangeRate"></span>
+          <input type="number" name="vndRate" min="1" step="100" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="groupSources"></legend>
+
+        <label class="check">
+          <input type="checkbox" name="usageEnabled" />
+          <span data-i18n="usageEnabled"></span>
+        </label>
+        <p class="hint" data-i18n="usageEnabledHint"></p>
+
+        <label class="field">
+          <span data-i18n="transcriptInterval"></span>
+          <input type="number" name="transcriptIntervalSeconds" min="1" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="usageInterval"></span>
+          <input type="number" name="usageIntervalSeconds" min="60" />
+        </label>
+        <p class="hint" data-i18n="usageIntervalHint"></p>
+
+        <label class="field stacked">
+          <span data-i18n="claudePath"></span>
+          <input type="text" name="claudePath" spellcheck="false" />
+        </label>
+        <p class="hint" data-i18n="claudePathHint"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="groupAlerts"></legend>
+
+        <label class="check">
+          <input type="checkbox" name="notificationsEnabled" />
+          <span data-i18n="notificationsEnabled"></span>
+        </label>
+
+        <label class="field">
+          <span data-i18n="sessionAlert"></span>
+          <input type="number" name="sessionAlertPercent" min="1" max="100" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="weekAlert"></span>
+          <input type="number" name="weekAlertPercent" min="1" max="100" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend data-i18n="groupWindow"></legend>
+
+        <label class="check">
+          <input type="checkbox" name="alwaysOnTop" />
+          <span data-i18n="alwaysOnTop"></span>
+        </label>
+
+        <label class="check" id="skip-taskbar-field">
+          <input type="checkbox" name="skipTaskbar" />
+          <span data-i18n="skipTaskbar"></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" name="autostart" />
+          <span data-i18n="autostart"></span>
+        </label>
+
+        <label class="field">
+          <span data-i18n="opacity"></span>
+          <input type="range" name="opacity" min="0.1" max="1" step="0.02" />
+        </label>
+      </fieldset>
+
+      <p class="saved" id="saved" hidden data-i18n="saved"></p>
+    </form>
+    <script src="strings.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>

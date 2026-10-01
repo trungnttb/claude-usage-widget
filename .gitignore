@@ -1,0 +1,11 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/
+.DS_Store
+Thumbs.db
+*.log
+
+# NSIS toolset fetched by hand when the proxy blocks Tauri's download
+nsis-*.zip
+nsis_tauri_utils.dll

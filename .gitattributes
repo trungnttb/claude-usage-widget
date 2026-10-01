@@ -1,0 +1,8 @@
+# One line ending everywhere. Without this the repo drifts: a file written on
+# Windows arrives as CRLF, an edit on another machine rewrites every line, and
+# the real change is buried in a whole-file diff.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
+*.icns binary

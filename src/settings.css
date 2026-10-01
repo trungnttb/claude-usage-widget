@@ -1,0 +1,126 @@
+:root {
+  --bg: #16161a;
+  --panel: #1e1e24;
+  --fg: #e8e8ea;
+  --muted: #8b8b93;
+  --line: rgb(255 255 255 / 10%);
+  --accent: #d97757;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 14px;
+  font:
+    13px/1.5 system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+fieldset {
+  margin: 0 0 14px;
+  padding: 10px 12px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+legend {
+  padding: 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.group {
+  margin: 6px 0 10px;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.hint {
+  margin: 2px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+code {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* A path does not fit beside its label, so this row stacks instead. */
+.field.stacked {
+  display: block;
+}
+
+.field.stacked > span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  font: inherit;
+  color: var(--fg);
+  background: #101014;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+input[type="number"],
+select {
+  width: 120px;
+  padding: 4px 6px;
+  font: inherit;
+  color: var(--fg);
+  background: #101014;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+input[type="range"] {
+  width: 120px;
+  accent-color: var(--accent);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.saved {
+  margin: 0;
+  color: var(--accent);
+  text-align: right;
+}
+
+[hidden] {
+  display: none !important;
+}
