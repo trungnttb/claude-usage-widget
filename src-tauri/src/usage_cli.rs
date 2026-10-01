@@ -12,6 +12,7 @@
 //! write to are on it. Windows GUI processes do inherit the user PATH, which
 //! is why the bare name was enough there.
 
+#[cfg(unix)]
 use std::ffi::OsString;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
@@ -29,6 +30,7 @@ pub const DEFAULT_TIMEOUT: Duration = Duration::from_secs(30);
 ///
 /// That search sources the user's rc files, which are free to do anything;
 /// without a limit a slow one would stall the poll it is resolving for.
+#[cfg(unix)]
 const SHELL_PROBE_TIMEOUT: Duration = Duration::from_secs(5);
 
 const EXECUTABLE_NAME: &str = "claude";
